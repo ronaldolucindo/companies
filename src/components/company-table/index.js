@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { formatCurrency, formatDate } from 'common/utils';
 
 function CompanyTable({ data }) {
   return (
@@ -16,7 +17,7 @@ function CompanyTable({ data }) {
         <TableHead>
           <TableRow>
             <TableCell>Company Name</TableCell>
-            <TableCell align="right">Date of First Purchase</TableCell>
+            <TableCell align="center">Date of First Purchase</TableCell>
             <TableCell align="right">Total Budget</TableCell>
             <TableCell align="right">Budget Spent</TableCell>
             <TableCell align="right">Budget Left</TableCell>
@@ -28,11 +29,15 @@ function CompanyTable({ data }) {
               <TableCell component="th" scope="row">
                 {item.name}
               </TableCell>
-              <TableCell align="right">{item.date_of_first_purchase}</TableCell>
-              <TableCell align="right">{item.budget}</TableCell>
-              <TableCell align="right">{item.budget_spent}</TableCell>
+              <TableCell align="center">
+                {formatDate(item.date_of_first_purchase)}
+              </TableCell>
+              <TableCell align="right">{formatCurrency(item.budget)}</TableCell>
               <TableCell align="right">
-                {item.budget - item.budget_spent}
+                {formatCurrency(item.budget_spent)}
+              </TableCell>
+              <TableCell align="right">
+                {formatCurrency(item.budget - item.budget_spent)}
               </TableCell>
             </TableRow>
           ))}
