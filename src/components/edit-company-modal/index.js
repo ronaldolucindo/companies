@@ -25,14 +25,14 @@ function EditCompanyModal({ company, show, onSubmit, onClose }) {
 
   useEffect(() => {
     setBudget(company.budget);
-  }, [company.budget]);
+  }, [company.budget, show]);
 
   return (
     <Dialog
       open={show}
       onClose={onClose}
       fullWidth
-      maxWidth="md"
+      maxWidth="sm"
       aria-labelledby="company-dialog-title"
       aria-describedby="company-dialog-description"
       className="company-modal"

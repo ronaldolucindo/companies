@@ -10,9 +10,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { formatCurrency, formatDate } from 'common/utils';
 
-function CompanyTable({ data }) {
+import './styles.css';
+
+function CompanyTable({ data, onRowClick }) {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="company-table">
       <Table aria-label="companies list">
         <TableHead>
           <TableRow>
@@ -23,9 +25,9 @@ function CompanyTable({ data }) {
             <TableCell align="right">Budget Left</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody className="company-table-body">
           {data.map(item => (
-            <TableRow key={item.id} hover>
+            <TableRow key={item.id} hover onClick={() => onRowClick(item)}>
               <TableCell component="th" scope="row">
                 {item.name}
               </TableCell>
@@ -52,7 +54,8 @@ CompanyTable.defaultProps = {
 };
 
 CompanyTable.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  onRowClick: PropTypes.func.isRequired
 };
 
-export default CompanyTable;
+export default React.memo(CompanyTable);
