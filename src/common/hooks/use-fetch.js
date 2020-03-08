@@ -18,7 +18,7 @@ function useFetch(request) {
         fetching: false,
         fetched: true,
         error: null,
-        data: [...response.data]
+        data: response.data
       }));
     } catch (error) {
       console.error(error);
